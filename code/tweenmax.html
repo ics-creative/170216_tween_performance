@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.3.5/pixi.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+<script>
+  (function () {
+    "use strict";
+    class Main {
+      constructor() {
+        this.NUM_PARTICLES = location.href.split("?")[1] || 1000;
+
+        this.setupScreen();
+        this.setupStage();
+        this.setupParticles();
+
+        //Start the game loop
+        this.enterFrameHandler();
+      }
+
+      setupParticles() {
+
+        var canvas = document.createElement("canvas");
+        canvas.width = 1;
+        canvas.height = 1;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, 1, 1);
+
+        var texture = PIXI.Texture.fromCanvas(canvas);
+
+        var p = null;
+        var a, dx, dy;
+        var i = this.NUM_PARTICLES;
+        while (--i >= 0) {
+
+          a = Math.random() * Math.PI * 2;
+          dx = Math.cos(a) * 300 * 1.4 + 300;
+          dy = Math.sin(a) * 400 * 1.4 + 400;
+
+          p = new PIXI.Sprite(texture);
+          p.x = 300;
+          p.y = 400;
+
+          var sec = (1.5 + Math.random() * 4.5);
+
+          TweenMax.to(p, sec, {x: dx, y: dy, repeat: -1, ease: Cubic.easeIn});
+
+          this.stage.addChild(p);
+        }
+      }
+
+      setupScreen() {
+        //Create a Pixi stage and renderer
+        this.stage = new PIXI.Container();
+        this.renderer = PIXI.autoDetectRenderer(600, 800);
+        document.body.appendChild(this.renderer.view);
+      }
+
+      setupStage() {
+      }
+
+
+      enterFrameHandler(e) {
+        requestAnimationFrame(() => {
+          this.enterFrameHandler()
+        });
+
+        //Render the stage
+        this.renderer.render(this.stage);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      new Main();
+    }, false);
+
+  })();
+</script>
+<script src="auto-stats.js"></script>
+</body>
+</html>
