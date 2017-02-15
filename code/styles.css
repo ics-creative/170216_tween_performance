@@ -201,9 +201,7 @@ html, body {
 .mdl-demo .mdl-card .mdl-card__supporting-text > h3:first-child {
   margin-bottom: 24px;
 }
-.mdl-demo .mdl-layout__tab-panel:not(#overview) {
-  background-color: white;
-}
+
 .mdl-demo #features section {
   margin-bottom: 72px;
 }
@@ -235,4 +233,22 @@ html, body {
 }
 .mdl-demo .mdl-menu__container {
   z-index: 99;
+}
+
+.mdl-layout__tab{
+  text-transform: none;
+}
+
+#view-source {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 0;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  z-index: 900;
+}
+
+.mdl-layout__content{
+  padding-top:50px;
 }
