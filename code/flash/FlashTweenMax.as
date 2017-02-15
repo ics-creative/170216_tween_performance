@@ -12,7 +12,7 @@
 	 * BetweenAS3の検証デモです。
 	 * @author Yasunobu Ikeda
 	 */
-	[SWF(width = "600", height = "800", frameRate = "60", backgroundColor = 0x000000)]
+	[SWF(width = "800", height = "800", frameRate = "60", backgroundColor = 0x000000)]
 	public class FlashTweenMax extends Sprite {
 
 		public function FlashTweenMax() {
@@ -68,11 +68,11 @@ internal class Game extends Sprite {
 
 
 			a = Math.random() * Math.PI * 2;
-			dx = Math.cos(a) * 300 * 1.4 + 300;
+			dx = Math.cos(a) * 400 * 1.4 + 400;
 			dy = Math.sin(a) * 400 * 1.4 + 400;
 
 			p = Quad.fromTexture(texture);
-			p.x = 300;
+			p.x = 400;
 			p.y = 400;
 			
 			var sec = (1.5 + Math.random() * 4.5);
