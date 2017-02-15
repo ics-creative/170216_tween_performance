@@ -40,10 +40,12 @@
           p.style.left = centerX + "px";
           p.style.top = centerY + "px";
 
-          createjs.Tween.get(p, {loop: true}).to({
-            left: dx,
-            top: dy
-          }, (1.5 + Math.random() * 4.5) * 1000, createjs.Ease.cubicIn);
+          var msec = (1.5 + Math.random() * 4.5) * 1000;
+
+          createjs.Tween.get(p, {loop: true})
+                  .to({left: dx, top: dy},
+                          msec,
+                          createjs.Ease.cubicIn);
 
           document.querySelector("#container").appendChild(p);
         }
