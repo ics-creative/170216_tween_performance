@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
+  <link rel="stylesheet" href="dom.css">
+</head>
+<body>
+<div id="container"></div>
+<script>
+  (function () {
+    "use strict";
+
+    const centerX = 400;
+    const centerY = 400;
+    const radius = 560;
+
+    class Main {
+      constructor() {
+        this.NUM_PARTICLES = Number(location.href.split("?")[1]) || 100;
+        this.setupParticles();
+      }
+
+      setupParticles() {
+        var p = null;
+        var a, dx, dy;
+        var i = this.NUM_PARTICLES;
+        while (--i >= 0) {
+
+          p = document.createElement("div");
+          document.querySelector("#container").appendChild(p);
+
+          p.classList.add("dot");
+          p.style.left = centerX + "px";
+          p.style.top = centerY + "px";
+
+          a = Math.random() * Math.PI * 2;
+          dx = Math.cos(a) * radius + centerX;
+          dy = Math.sin(a) * radius + centerY;
+
+          var msec = (1.5 + Math.random() * 4.5) * 1000;
+
+          p.animate({
+            left: [centerX + "px", dx + "px"],
+            top: [centerY + "px", dy + "px"]
+          },{
+            duration: msec,
+            iterations: Infinity,
+            direction: "normal"
+          });
+        }
+      }
+    }
+
+
+    window.addEventListener("DOMContentLoaded", () => {
+      new Main();
+    }, false);
+
+
+  })();
+</script>
+<script src="auto-stats.js"></script>
+</body>
+</html>
