@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script src="libs/CSSPlugin.js"></script>
+  <link rel="stylesheet" href="dom.css">
+</head>
+<body>
+<div class="container">
+  <div class="rect"></div>
+</div>
+<script>
+  
+  // プラグインのインストール
+  createjs.CSSPlugin.install();
+  
+  // フレームレートを設定
+  createjs.Ticker.setFPS(60);
+  
+  // 要素を取得
+  var element = document.querySelector(".rect");
+  
+  createjs.Tween.get(element, {loop: true})
+          .to({left: 800},
+                  3000, // ミリ秒
+                  createjs.Ease.cubicInOut // イージングの種類
+          );
+
+
+</script>
+</body>
+</html>
