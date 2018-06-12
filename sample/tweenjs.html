@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.6.0/Tween.min.js"></script>
-  <link rel="stylesheet" href="dom.css">
+  <meta charset="UTF-8"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+  <link rel="stylesheet" href="dom.css"/>
 </head>
 <body>
-<div class="container">
-  <div class="rect"></div>
-</div>
-<script>
-  var element = document.querySelector(".rect"); // 要素を取得
-  var param = {x: 0, rotation: 0}; // 仮想の変化値Objectを作成
-  
-  new TWEEN.Tween(param)
-          .to({x: 800, rotation: 360}, 3000)
-          .repeat(Infinity) // リピート指定
-          .easing(TWEEN.Easing.Cubic.InOut) // 加減速の種類
-          .onUpdate(function () { // 更新時
-            // 仮想の変化値Objectを要素に反映
-            element.style.transform =
-                    "translateX(" + param.x + "px) " +
-                    "rotate(" + param.rotation + "deg)";
-          })
-          .start();
-  
-  // 更新は任意のタイミングで行う
-  loop();
-  function loop() {
-    requestAnimationFrame(loop);
-    TWEEN.update();
-  }
+  <div class="container">
+    <div class="rect"></div>
+  </div>
+  <script>
+    var element = document.querySelector('.rect'); // 要素を取得
+    var param = {x: 0, rotation: 0}; // 仮想の変化値Objectを作成
 
-</script>
+    new TWEEN.Tween(param)
+      .to({x: 800, rotation: 360}, 3000)
+      .repeat(Infinity) // リピート指定
+      .easing(TWEEN.Easing.Cubic.InOut) // 加減速の種類
+      .onUpdate(function () { // 更新時
+        // 仮想の変化値Objectを要素に反映
+        element.style.transform =
+          'translateX(' + param.x + 'px) ' +
+          'rotate(' + param.rotation + 'deg)';
+      })
+      .start();
+
+    // 更新は任意のタイミングで行う
+    loop();
+
+    function loop() {
+      requestAnimationFrame(loop);
+      TWEEN.update();
+    }
+
+  </script>
 </body>
 </html>
