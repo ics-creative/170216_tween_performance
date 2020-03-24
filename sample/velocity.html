@@ -11,11 +11,10 @@
   </div>
   <script>
     var element = document.querySelector('.rect'); // 要素を取得
-
+    
     Velocity(element,
       {
-        translateX: 800,
-        rotateZ: 360
+        transform: ["translateX(0px) rotate(0deg)", "translateX(800px) rotate(360deg)"] 
       }, {
         easing: 'ease', // 加減速の種類
         duration: 3000, // ミリ秒指定
