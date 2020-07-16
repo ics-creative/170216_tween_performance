@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="dom.css"/>
+  <meta charset="UTF-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="dom.css" />
 </head>
+
 <body>
-<div class="container">
-  <div class="rect"></div>
-</div>
-<script>
-  (function () {
-    "use strict";
-    
-    tween();
-    function tween() {
-      $(".rect")
-              .css({left: 0}) // 初期値
-              .animate({left: 800},
-                      3000, // ミリ秒指定
-                      "linear", // 加減速の種類
-                      function () {
-                        tween();
-                      }
-              );
-    }
-    
-  })();
-</script>
+  <div class="container">
+    <div class="rect"></div>
+  </div>
+  <script>
+    (function () {
+      "use strict";
+
+      tween();
+      function tween() {
+        $(".rect")
+          .css({ left: 0 }) // 初期値
+          .animate({ left: 800 },
+            3000, // ミリ秒指定
+            "linear", // 加減速の種類
+            function () {
+              tween();
+            }
+          );
+      }
+
+    })();
+  </script>
 </body>
+
 </html>
