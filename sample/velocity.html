@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
   <link rel="stylesheet" href="dom.css" />
 </head>
 
@@ -12,18 +12,20 @@
     <div class="rect"></div>
   </div>
   <script>
-    const element = document.querySelector('.rect'); // 要素を取得
+    var element = document.querySelector(".rect"); // 要素を取得
 
-    Velocity(element,
+    Velocity(
+      element,
       {
-        transform:
-          ["translateX(800px) rotateZ(360deg)", "translateX(0px) rotateZ(0deg)"]
-      }, {
-      easing: 'ease', // 加減速の種類
-      duration: 3000, // ミリ秒指定
-
-      loop: true // 繰り返し
-    });
+        translateX: 800,
+        rotateZ: 360
+      },
+      {
+        easing: "ease", // 加減速の種類
+        duration: 3000, // ミリ秒指定
+        loop: true // 繰り返し
+      }
+    );
 
 
 
