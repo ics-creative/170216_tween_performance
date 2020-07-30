@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.0/tween.umd.js"></script>
-  <link rel="stylesheet" href="dom.css"/>
+  <link rel="stylesheet" href="dom.css" />
 </head>
+
 <body>
   <div class="container">
     <div class="rect"></div>
   </div>
   <script type="module">
-    const element = document.querySelector('.rect'); // 要素を取得
-    const param = {x: 0, rotation: 0}; // 仮想の変化値Objectを作成
-    
+    const element = document.querySelector(".rect"); // 要素を取得
+    const param = { x: 0, rotation: 0 }; // 仮想の変化値Objectを作成
+
     new TWEEN.Tween(param)
-      .to({x: 800, rotation: 360}, 3000)
+      .to({ x: 800, rotation: 360 }, 3000)
       .repeat(Infinity) // リピート指定
       .easing(TWEEN.Easing.Cubic.InOut) // 加減速の種類
       .onUpdate(function () { // 更新時
         // 仮想の変化値Objectを要素に反映
         element.style.transform =
-          'translateX(' + param.x + 'px) ' +
-          'rotate(' + param.rotation + 'deg)';
+          "translateX(" + param.x + "px) " +
+          "rotate(" + param.rotation + "deg)";
       })
       .start();
 
@@ -32,8 +34,8 @@
       requestAnimationFrame(loop);
       TWEEN.update();
     }
-  
 
   </script>
 </body>
+
 </html>
