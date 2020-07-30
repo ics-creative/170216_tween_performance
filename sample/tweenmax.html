@@ -12,9 +12,13 @@
     <div class="rect"></div>
   </div>
   <script>
-    gsap.timeline({ repeat: -1 })
-      .set(".rect", { x: 0 })
-      .to(".rect", { duration: 3, x: 700, rotate: 360, ease: Cubic.easeInOut });
+    gsap.to('.rect', {
+      duration: 3,
+      x: 700,
+      rotate: 360,
+      repeat: -1,
+      ease: Cubic.easeInOut
+    });
   </script>
 </body>
 
