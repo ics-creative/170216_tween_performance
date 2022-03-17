@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"/>
+  <script src="libs/tween24.js"></script>
+  <link rel="stylesheet" href="dom.css"/>
+</head>
+
+<body>
+  <div class="container">
+    <div class="rect"></div>
+  </div>
+  <script>
+    // トゥイーンの対象を取得
+    const target = document.querySelector(".rect");
+
+    Tween24.loop(0,
+      Tween24.serial(
+        Tween24.tween(target, 3, Ease24._3_CubicInOut)
+          .x(700)
+          .rotation(360),
+        Tween24.prop(target)
+          .x(0)
+          .rotation(0)
+      )
+    ).play();
+  </script>
+</body>
+
+</html>
