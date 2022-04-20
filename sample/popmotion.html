@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="dom.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popmotion/11.0.3/popmotion.js"
+          integrity="sha512-LZjVmWj64loKzy6ANM2Mj5Yhw2Imu0u57wP/zZZ315WbiPi6CbyIvmXcCviNKYfJreEbnAnUBEfMBrjQxRpzRw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="rect"></div>
+  </div>
+  <script>
+    const element = document.querySelector('.rect')
+
+    popmotion.animate({
+      from: {
+        x: 0,
+        rotate: 0,
+      },
+      to: {
+        x: 800,
+        rotate: 360,
+      },
+      onUpdate(param) {
+        // 仮想の変化値Objectを要素に反映
+        element.style.transform = `translateX(${param.x}px) rotate(${param.rotate}deg)`;
+      },
+      duration: 3000, // ミリ秒指定
+      repeat: Infinity, // 繰り返し
+      ease: popmotion.easeInOut // 加減速の種類
+    });
+  </script>
+</body>
+
+</html>
