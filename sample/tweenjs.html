@@ -22,8 +22,7 @@
       .onUpdate(function () { // 更新時
         // 仮想の変化値Objectを要素に反映
         element.style.transform =
-          "translateX(" + param.x + "px) " +
-          "rotate(" + param.rotation + "deg)";
+          `translateX(${param.x}px) rotate(${param.rotation}deg)`;
       })
       .start();
 
