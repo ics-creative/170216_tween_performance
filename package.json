@@ -1,0 +1,11 @@
+{
+  "name": "170216_tween_performance",
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier --write '{dom,webgl}/*.{html,js,css}'"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "private": true
+}

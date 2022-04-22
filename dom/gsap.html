@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="dom.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="../libs/auto-stats.js"></script>
 
     <script type="module">
@@ -16,17 +16,12 @@
 
           const obj = createRandomFromTo();
 
-          $(particle).animate(
-            {
-              left: obj.to.x,
-              top: obj.to.y,
-            },
-            obj.duration * 1000,
-            "linear",
-            () => {
-              this.tween(p);
-            }
-          );
+          gsap.to(particle, obj.duration, {
+            left: obj.to.x,
+            top: obj.to.y,
+            repeat: -1,
+            ease: Cubic.easeIn,
+          });
         }
       });
     </script>

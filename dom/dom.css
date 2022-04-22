@@ -1,27 +1,27 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    background: black;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: black;
 }
 
 #container {
-    position: relative;
-    width: 800px;
-    height: 800px;
+  position: relative;
+  width: 800px;
+  height: 800px;
 
-    /*pointer-events: none;*/
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+  /*pointer-events: none;*/
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .dot {
-    width: 1px;
-    height: 1px;
-    display: block;
-    position: absolute;
-    background: white;
+  width: 1px;
+  height: 1px;
+  display: block;
+  position: absolute;
+  background: white;
 }

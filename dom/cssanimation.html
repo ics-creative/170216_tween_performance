@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="dom.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../libs/auto-stats.js"></script>
 
     <script type="module">
@@ -16,17 +15,17 @@
 
           const obj = createRandomFromTo();
 
-          $(particle).animate(
-            {
-              left: obj.to.x,
-              top: obj.to.y,
-            },
-            obj.duration * 1000,
-            "linear",
-            () => {
-              this.tween(p);
-            }
-          );
+          const keyframes = `@keyframes anim_${i} {
+  0% { left: ${obj.from.x}px; top: ${obj.from.y}px; }
+  100% { left: ${obj.to.x}px; top: ${obj.to.y}px; }
+}`;
+
+          // stylesheet オブジェクトの追加位置に keyframes を追加する
+          document.styleSheets[0].insertRule(keyframes, 0);
+
+          // アニメーションを開始
+          particle.classList.add("dot");
+          particle.style.animation = `anim_${i} ${obj.duration}s ease infinite`;
         }
       });
     </script>
