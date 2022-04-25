@@ -1,210 +1,105 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <title>Tween Library Performance - DOM</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-    />
-    <title>Tween Library Performance - DOM - ICS</title>
+    <meta name="google" content="notranslate" />
+    <meta name="color-scheme" content="dark" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes" />
+    <script type="module">
+      import {
+        createApp,
+        ref,
+        computed,
+      } from "https://unpkg.com/vue@3.2.4/dist/vue.esm-browser.prod.js";
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-  <link rel="canonical" href="http://www.example.com/">
-  -->
+      const TWEEN_LIST = [
+        { label: "GSAP", href: "gsap.html" },
+        { label: "Popmotion", href: "popmotion.html" },
+        { label: "Anime.js", href: "animejs.html" },
+        { label: "Tween24", href: "tween24.html" },
+        { label: "CSS Animations", href: "cssanimation.html" },
+        { label: "Web Animations API", href: "webanimations.html" },
+        { label: "CreateJS", href: "createjs.html" },
+        { label: "jQuery", href: "jquery.html" },
+        { label: "Tween.js", href: "tweenjs.html" },
+        { label: "Velocity", href: "velocity.html" },
+      ];
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://code.getmdl.io/1.3.0/material.blue-pink.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header
-        class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary"
-      >
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row"></div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Tween Library Performance - DOM</h3>
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row"></div>
-        <div
-          class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark"
-        >
-          <a
-            href="#gsap"
-            class="mdl-layout__tab is-active"
-            data-src="gsap.html"
-            data-danger-max="-1"
-            >gsap</a
-          >
+      const app = createApp({
+        setup() {
+          // ハンバーガーボタンの状態です
+          const tweenList = ref(TWEEN_LIST);
+          const selected = ref(TWEEN_LIST[0]);
+          const numParticles = ref(1000);
 
-          <a
-            href="#popmotion"
-            class="mdl-layout__tab"
-            data-src="popmotion.html"
-            data-danger-max="-1"
-            >Popmotion</a
-          >
-
-          <a
-            href="#tween24"
-            class="mdl-layout__tab"
-            data-src="tween24.html"
-            data-danger-max="-1"
-            >Tween24</a
-          >
-
-          <a
-            href="#createjs"
-            class="mdl-layout__tab"
-            data-src="createjs.html"
-            data-danger-max="-1"
-            >TweenJS (CreateJS)</a
-          >
-          <a
-            href="#tween_js"
-            class="mdl-layout__tab"
-            data-src="tweenjs.html"
-            data-danger-max="-1"
-            >Tween.js</a
-          >
-          <a
-            href="#animejs"
-            class="mdl-layout__tab"
-            data-src="animejs.html"
-            data-danger-max="5000"
-            >Anime.js</a
-          >
-          <a
-            href="#jquery"
-            class="mdl-layout__tab"
-            data-src="jquery.html"
-            data-danger-max="2000"
-            >jQuery</a
-          >
-          <a
-            href="#velocity"
-            class="mdl-layout__tab"
-            data-src="velocity.html"
-            data-danger-max="5000"
-            >Velocity.js</a
-          >
-          <a
-            href="#webanimation"
-            class="mdl-layout__tab"
-            data-src="webanimations.html"
-            data-danger-max="-1"
-            >Web Animations API</a
-          >
-          <a
-            href="#cssanimation"
-            class="mdl-layout__tab"
-            data-src="cssanimation.html"
-            data-danger-max="-1"
-            >CSS Animations</a
-          >
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <section class="section--center mdl-grid mdl-shadow--2dp">
-          <iframe
-            id="iframe-container"
-            width="800"
-            height="800"
-            frameborder="0"
-          ></iframe>
-
-          <div>
-            <label for="num-particles">Number of Dot Instance</label>
-            <input
-              id="num-particles"
-              type="number"
-              value="1000"
-              max="50000"
-              min="1000"
-              step="1000"
-            />
-            <button
-              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-              id="btn-reload"
-            >
-              Update
-            </button>
-          </div>
-        </section>
-
-        <div class="mdl-layout__tab-panel" id="createjs"></div>
-        <div class="mdl-layout__tab-panel is-active" id="gsap"></div>
-        <div class="mdl-layout__tab-panel" id="tween_js"></div>
-        <div class="mdl-layout__tab-panel" id="popmotion"></div>
-        <div class="mdl-layout__tab-panel" id="tween24"></div>
-        <div class="mdl-layout__tab-panel" id="animejs"></div>
-        <div class="mdl-layout__tab-panel" id="webanimation"></div>
-        <div class="mdl-layout__tab-panel" id="cssanimation"></div>
-        <div class="mdl-layout__tab-panel" id="jquery"></div>
-        <div class="mdl-layout__tab-panel" id="velocity"></div>
-      </main>
-    </div>
-    <a
-      href="https://github.com/ics-creative/170216_tween_performance/tree/master/dom"
-      target="_blank"
-      id="view-source"
-      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast"
-      >View Source</a
-    >
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script>
-      var lastUrl = $(".mdl-layout__tab.is-active").data("src");
-      var dangerMax = -1;
-      updateIframe();
-
-      $(".mdl-layout__tab").click(function () {
-        lastUrl = $(this).data("src");
-        dangerMax = Number($(this).data("danger-max"));
-        updateIframe();
-      });
-      $("#btn-reload").click(function () {
-        updateIframe();
-      });
-      function updateIframe() {
-        var exexutable = true;
-
-        if (dangerMax != -1 && Number($("#num-particles").val()) >= dangerMax) {
-          var ok = confirm(
-            "Warning. \n\n" +
-              "The tweening engine you chose may have a difficult time handling this number of instances.\n" +
-              "If you chose OK, the browser will be crashed. \n\n" +
-              "Do you want to execute it?"
+          const iframeUrl = computed(
+            () => selected.value.href + "?" + numParticles.value
           );
-          if (ok === false) {
-            exexutable = false;
-          }
-        }
-
-        if (exexutable === true) {
-          $("#iframe-container").attr(
-            "src",
-            lastUrl + "?" + $("#num-particles").val()
-          );
-        } else {
-          $("#iframe-container").attr("src", "");
-        }
-      }
+          return { tweenList, selected, iframeUrl, numParticles };
+        },
+      });
+      app.mount("#app");
     </script>
+  </head>
+  <body class="bg-slate-900 text-white">
+    <div id="app">
+      <div class="min-h-full">
+        <nav class="bg-gray-800">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex justify-center items-center">
+              <h1 class="text-center font-bold text-lg">
+                Tween Library Performance - DOM
+              </h1>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="container mx-auto py-4">
+        <div class="text-center my-2 flex flex-wrap gap-1 justify-center">
+          <button
+            v-for="item in tweenList"
+            class="px-3 py-2 rounded-md text-sm font-medium"
+            :class="selected.href === item.href ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'"
+            :aria-current="selected.href === item.href ? 'page' : undefined"
+            :key="item"
+            @click="selected = item"
+          >
+            {{item.label}}
+          </button>
+        </div>
+
+        <iframe
+          class="mx-auto"
+          :src="iframeUrl"
+          width="800"
+          height="800"
+        ></iframe>
+
+        <div class="max-w-screen-sm mx-auto my-4">
+          <label>Number of Dot Instance </label>
+          <input
+            class="shadow appearance-none border border-slate-500 rounded w-full py-2 px-3 bg-slate-800 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+            type="number"
+            v-model="numParticles"
+            max="50000"
+            min="1000"
+            step="1000"
+          />
+        </div>
+      </div>
+
+      <div class="absolute bottom-4 right-4">
+        <a
+          href="https://github.com/ics-creative/170216_tween_performance"
+          target="_blank"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >View Source</a
+        >
+      </div>
+    </div>
   </body>
 </html>
