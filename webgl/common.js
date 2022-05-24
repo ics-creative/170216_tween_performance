@@ -1,12 +1,13 @@
 const STAGE_WIDTH = 800;
-const STAGE_HEIGHT = 800;
+const STAGE_HEIGHT = 600;
 
 /**
  * 検証用のPixiJSのステージを作成します。
  */
 export class Main {
   constructor() {
-    this.NUM_PARTICLES = Number(location.href.split("?")[1]) || 10000;
+    // パーティクルの個数をURLから算出
+    const numParticles = Number(location.href.split("?")[1]) || 10000;
 
     const app = new PIXI.Application({
       width: STAGE_WIDTH,
@@ -27,14 +28,18 @@ export class Main {
 
     const particles = [];
 
-    for (let i = 0; i < this.NUM_PARTICLES; i++) {
+    // 同一テクスチャーで高速化するコンテナー
+    const container = new PIXI.ParticleContainer(numParticles);
+    this.app.stage.addChild(container);
+
+    for (let i = 0; i < numParticles; i++) {
       const p = new PIXI.Sprite(texture);
 
       // init position
       p.x = STAGE_WIDTH / 2;
       p.y = STAGE_HEIGHT / 2;
 
-      this.app.stage.addChild(p);
+      container.addChild(p);
       particles.push(p);
     }
     this.particles = particles;

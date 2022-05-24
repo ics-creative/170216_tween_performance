@@ -25,7 +25,9 @@
 
           // アニメーションを開始
           particle.classList.add("dot");
-          particle.style.animation = `anim_${i} ${obj.duration}s ease infinite`;
+          // https://easings.net/#easeInCubic
+          // cubic-bezier(0.32, 0, 0.67, 0)
+          particle.style.animation = `anim_${i} ${obj.duration}s cubic-bezier(0.32, 0, 0.67, 0) infinite`;
         }
       });
     </script>

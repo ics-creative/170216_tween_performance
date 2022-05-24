@@ -15,6 +15,9 @@
 
           const obj = createRandomFromTo();
 
+          // https://easings.net/#easeInCubic
+          // cubic-bezier(0.32, 0, 0.67, 0)
+
           particle.animate(
             {
               left: [obj.from.x + "px", obj.to.x + "px"],
@@ -24,6 +27,7 @@
               duration: obj.duration * 1000,
               iterations: Infinity,
               direction: "normal",
+              easing: "cubic-bezier(0.32, 0, 0.67, 0)",
             }
           );
         }

@@ -10,9 +10,10 @@
     <script type="module">
       import { createParticles, createRandomFromTo } from "./common.js";
 
-      createjs.CSSPlugin.install();
       createjs.Ticker.timingMode = createjs.Ticker.RAF;
-      createjs.Ticker.setFPS(60);
+      createjs.Ticker.framerate = 60;
+      // プラグインのインストール
+      createjs.CSSPlugin.install();
 
       window.addEventListener("DOMContentLoaded", () => {
         const particles = createParticles();

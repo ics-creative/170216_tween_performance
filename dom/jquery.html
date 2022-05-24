@@ -16,17 +16,23 @@
 
           const obj = createRandomFromTo();
 
-          $(particle).animate(
-            {
-              left: obj.to.x,
-              top: obj.to.y,
-            },
-            obj.duration * 1000,
-            "linear",
-            () => {
-              this.tween(p);
-            }
-          );
+          const tween = () => {
+            $(particle)
+              .css({
+                left: obj.from.x,
+                top: obj.from.y,
+              })
+              .animate(
+                {
+                  left: obj.to.x,
+                  top: obj.to.y,
+                },
+                obj.duration * 1000,
+                "linear",
+                tween
+              );
+          };
+          tween();
         }
       });
     </script>

@@ -1,5 +1,5 @@
 const STAGE_WIDTH = 800;
-const STAGE_HEIGHT = 800;
+const STAGE_HEIGHT = 600;
 
 export const createParticles = () => {
   const numParticles = Number(location.href.split("?")[1]) || 500;
