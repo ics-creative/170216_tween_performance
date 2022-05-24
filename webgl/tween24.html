@@ -16,15 +16,11 @@
 
           const obj = createRandomFromTo();
 
-          Tween24.loop(
-            0,
-            Tween24.serial(
-              Tween24.prop(particle).x(obj.from.x).y(obj.from.y),
-              Tween24.tween(particle, obj.duration, Ease24._3_CubicIn)
-                .x(obj.to.x)
-                .y(obj.to.y)
-            )
-          ).play();
+          Tween24.tween(particle, obj.duration, Ease24._3_CubicIn)
+            .x(obj.to.x)
+            .y(obj.to.y)
+            .repeat(-1)
+            .play();
         }
       });
     </script>

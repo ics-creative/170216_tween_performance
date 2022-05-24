@@ -9,8 +9,6 @@
     <script type="module">
       import { createParticles, createRandomFromTo } from "./common.js";
 
-      const sw = innerWidth / 2;
-      const sh = innerHeight / 2;
       window.addEventListener("DOMContentLoaded", () => {
         const particles = createParticles();
         for (let i = 0; i < particles.length; i++) {
@@ -18,17 +16,11 @@
 
           const obj = createRandomFromTo();
 
-          Tween24.loop(
-            0,
-            Tween24.serial(
-              Tween24.prop(particle)
-                .x(obj.from.x - sw)
-                .y(obj.from.y - sh),
-              Tween24.tween(particle, obj.duration, Ease24._3_CubicIn)
-                .x(obj.to.x - sw)
-                .y(obj.to.y - sh)
-            )
-          ).play();
+          Tween24.tween(particle, obj.duration, Ease24._3_CubicIn)
+            .left(obj.to.x)
+            .top(obj.to.y)
+            .repeat(-1)
+            .play();
         }
       });
     </script>
