@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,7 @@
           createjs.Tween.get(particle, { loop: true }).to(
             { left: obj.to.x, top: obj.to.y },
             obj.duration * 1000,
-            createjs.Ease.cubicIn
+            createjs.Ease.cubicIn,
           );
         }
       });

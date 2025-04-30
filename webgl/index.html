@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,7 +32,7 @@
           const numParticles = ref(40000);
 
           const iframeUrl = computed(
-            () => selected.value.href + "?" + numParticles.value
+            () => selected.value.href + "?" + numParticles.value,
           );
           return { tweenList, selected, iframeUrl, numParticles };
         },
