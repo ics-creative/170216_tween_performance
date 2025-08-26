@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="dom.css"/>
+</head>
+
+<body>
+  <div class="container">
+    <div class="rect"></div>
+  </div>
+  <script type="module">
+    import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+
+    animate('.rect', {
+      x: 800,
+      rotate: 360,
+    }, {
+      duration: 3.0, // 秒指定
+      repeat: Infinity, // 繰り返し
+      ease: "easeInOut" // イージング
+    });
+  </script>
+</body>
+
+</html>

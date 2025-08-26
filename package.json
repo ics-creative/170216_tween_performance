@@ -5,7 +5,7 @@
     "format": "prettier --write '{dom,webgl}/*.{html,js,css}'"
   },
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.2"
   },
   "private": true
 }

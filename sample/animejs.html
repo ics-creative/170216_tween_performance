@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link rel="stylesheet" href="dom.css" />
 </head>
 
@@ -11,10 +10,10 @@
   <div class="container">
     <div class="rect"></div>
   </div>
-  <script>
-    anime({
-      targets: ".rect", // 対象を指定
-      translateX: 800,
+  <script type="module">
+    import { animate } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+    animate(".rect", {
+      x: 800,
       rotate: 360,
       duration: 3000, // ミリ秒指定
       loop: true, // 繰り返し
