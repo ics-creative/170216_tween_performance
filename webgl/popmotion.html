@@ -3,19 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="common.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popmotion/11.0.3/popmotion.js"
-      integrity="sha512-LZjVmWj64loKzy6ANM2Mj5Yhw2Imu0u57wP/zZZ315WbiPi6CbyIvmXcCviNKYfJreEbnAnUBEfMBrjQxRpzRw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.3.2/browser/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popmotion/11.0.5/popmotion.js"></script>
     <script src="../libs/auto-stats.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "pixi.js": "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.12.0/pixi.mjs"
+        }
+      }
+    </script>
+
     <script type="module">
-      import { Main, createRandomFromTo } from "./common.js";
-      window.addEventListener("DOMContentLoaded", () => {
-        const main = new Main();
-        const particles = main.particles;
+      import { init, createRandomFromTo } from "./common.js";
+
+      window.addEventListener("DOMContentLoaded", async () => {
+        const { particles } = await init();
+
         for (let i = 0; i < particles.length; i++) {
           const particle = particles[i];
 

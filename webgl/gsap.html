@@ -3,14 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="common.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.3.2/browser/pixi.min.js"></script>
+
     <script src="../libs/auto-stats.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+          "pixi.js": "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.12.0/pixi.mjs"
+        }
+      }
+    </script>
+
     <script type="module">
-      import { Main, createRandomFromTo } from "./common.js";
-      window.addEventListener("DOMContentLoaded", () => {
-        const main = new Main();
-        const particles = main.particles;
+      import { init, createRandomFromTo } from "./common.js";
+      import { gsap } from "gsap";
+
+      window.addEventListener("DOMContentLoaded", async () => {
+        const { particles } = await init();
+
         for (let i = 0; i < particles.length; i++) {
           const particle = particles[i];
 
@@ -20,7 +31,7 @@
             x: obj.to.x,
             y: obj.to.y,
             repeat: -1,
-            ease: Cubic.easeIn,
+            ease: "power3.in",
           });
         }
       });

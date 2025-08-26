@@ -1,49 +1,52 @@
+import { Application, Texture, Container, Sprite } from "pixi.js";
+
 const STAGE_WIDTH = 800;
 const STAGE_HEIGHT = 600;
 
 /**
  * 検証用のPixiJSのステージを作成します。
  */
-export class Main {
-  constructor() {
-    // パーティクルの個数をURLから算出
-    const numParticles = Number(location.href.split("?")[1]) || 10000;
+export async function init() {
+  // パーティクルの個数をURLから算出
+  const numParticles = Number(location.href.split("?")[1]) || 10000;
 
-    const app = new PIXI.Application({
-      width: STAGE_WIDTH,
-      height: STAGE_HEIGHT,
-    });
-    this.app = app;
-    // Create a Pixi stage and renderer
-    document.body.appendChild(this.app.renderer.view);
+  const app = new Application();
+  await app.init({
+    width: STAGE_WIDTH,
+    height: STAGE_HEIGHT,
+    antialias: false,
+    resolution: 1,
+  });
 
-    const canvas = document.createElement("canvas");
-    canvas.width = 1;
-    canvas.height = 1;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, 1, 1);
+  // Create a Pixi stage and renderer
+  document.body.appendChild(app.canvas);
 
-    const texture = PIXI.Texture.from(canvas);
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, 1, 1);
 
-    const particles = [];
+  const texture = Texture.from(canvas);
 
-    // 同一テクスチャーで高速化するコンテナー
-    const container = new PIXI.ParticleContainer(numParticles);
-    this.app.stage.addChild(container);
+  const particles = [];
 
-    for (let i = 0; i < numParticles; i++) {
-      const p = new PIXI.Sprite(texture);
+  const container = new Container();
+  app.stage.addChild(container);
 
-      // init position
-      p.x = STAGE_WIDTH / 2;
-      p.y = STAGE_HEIGHT / 2;
+  for (let i = 0; i < numParticles; i++) {
+    const p = new Sprite(texture);
 
-      container.addChild(p);
-      particles.push(p);
-    }
-    this.particles = particles;
+    // init position
+    p.x = STAGE_WIDTH / 2;
+    p.y = STAGE_HEIGHT / 2;
+
+    container.addChild(p);
+    particles.push(p);
   }
+
+  return { app, particles };
 }
 
 /**

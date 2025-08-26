@@ -9,7 +9,7 @@
     <script type="importmap">
       {
         "imports": {
-          "tweenjs": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js",
+          "motion": "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm",
           "pixi.js": "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.12.0/pixi.mjs"
         }
       }
@@ -17,9 +17,8 @@
 
     <script type="module">
       import { init, createRandomFromTo } from "./common.js";
-      import { Tween, Easing } from "tweenjs";
+      import { animate } from "motion";
 
-      const tweens = [];
       window.addEventListener("DOMContentLoaded", async () => {
         const { particles } = await init();
 
@@ -28,17 +27,21 @@
 
           const obj = createRandomFromTo();
 
-          tweens[i] = new Tween(particle)
-            .to({ x: obj.to.x, y: obj.to.y }, obj.duration * 1000)
-            .repeat(Infinity)
-            .easing(Easing.Cubic.In)
-            .start();
+          // Motionライブラリを使用してアニメーション
+          animate(
+            particle,
+            {
+              x: [obj.from.x, obj.to.x],
+              y: [obj.from.y, obj.to.y],
+            },
+            {
+              duration: obj.duration,
+              easing: "ease-in",
+              repeat: Infinity,
+              direction: "alternate",
+            },
+          );
         }
-        const tick = () => {
-          tweens.forEach((tween) => tween.update());
-          requestAnimationFrame(tick);
-        };
-        tick();
       });
     </script>
   </head>

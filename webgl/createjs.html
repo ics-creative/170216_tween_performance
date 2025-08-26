@@ -4,16 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="common.css" />
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.3.2/browser/pixi.min.js"></script>
     <script src="../libs/auto-stats.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "pixi.js": "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.12.0/pixi.mjs"
+        }
+      }
+    </script>
+
     <script type="module">
-      import { Main, createRandomFromTo } from "./common.js";
-      window.addEventListener("DOMContentLoaded", () => {
+      import { init, createRandomFromTo } from "./common.js";
+
+      window.addEventListener("DOMContentLoaded", async () => {
         createjs.Ticker.timingMode = createjs.Ticker.RAF;
         createjs.Ticker.setFPS(60);
 
-        const main = new Main();
-        const particles = main.particles;
+        const { particles } = await init();
+
         for (let i = 0; i < particles.length; i++) {
           const particle = particles[i];
 
@@ -24,7 +33,7 @@
               x: obj.to.x,
               y: obj.to.y,
             },
-            (1.5 + Math.random() * 4.5) * 1000,
+            obj.duration * 1000,
             createjs.Ease.cubicIn,
           );
         }

@@ -8,19 +8,22 @@
     <meta name="color-scheme" content="dark" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@latest/dist/vue.esm-browser.prod.js"
+        }
+      }
+    </script>
+
     <script type="module">
-      import {
-        createApp,
-        ref,
-        computed,
-      } from "https://unpkg.com/vue@3.2.4/dist/vue.esm-browser.prod.js";
+      import { createApp, ref, computed } from "vue";
 
       const TWEEN_LIST = [
         { label: "GSAP", href: "gsap.html" },
-        { label: "Popmotion", href: "popmotion.html" },
         { label: "Anime.js", href: "animejs.html" },
-        { label: "Tween24", href: "tween24.html" },
-        { label: "CreateJS", href: "createjs.html" },
+        { label: "Motion", href: "motion.html" },
+        { label: "Popmotion", href: "popmotion.html" },
         { label: "Tween.js", href: "tweenjs.html" },
       ];
 

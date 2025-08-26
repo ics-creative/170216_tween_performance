@@ -3,21 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="common.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.3.2/browser/pixi.min.js"></script>
     <script src="../libs/auto-stats.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.1.3/+esm",
+          "pixi.js": "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.12.0/pixi.mjs"
+        }
+      }
+    </script>
     <script type="module">
-      import { Main, createRandomFromTo } from "./common.js";
-      window.addEventListener("DOMContentLoaded", () => {
-        const main = new Main();
-        const particles = main.particles;
+      import { init, createRandomFromTo } from "./common.js";
+      import { animate } from "animejs";
+      window.addEventListener("DOMContentLoaded", async () => {
+        const { particles } = await init();
         for (let i = 0; i < particles.length; i++) {
           const particle = particles[i];
 
           const obj = createRandomFromTo();
 
-          anime({
-            targets: particle,
+          animate(particle, {
             x: obj.to.x,
             y: obj.to.y,
             duration: obj.duration * 1000,
