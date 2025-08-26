@@ -15,7 +15,7 @@ const STAGE_HEIGHT = 600;
  */
 export async function init() {
   // パーティクルの個数をURLから算出
-  const numParticles = Number(location.href.split("?")[1]) || 10000;
+  const numParticles = Number(location.href.split("?")[1]) || 40000;
 
   const app = new Application();
   await app.init({
@@ -37,18 +37,16 @@ export async function init() {
   // Create a Pixi stage and renderer
   document.body.appendChild(app.canvas);
 
-  const canvas = document.createElement("canvas");
-  canvas.width = 1;
-  canvas.height = 1;
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, 1, 1);
+  // イベント無効でヒットテストを切る
+  app.stage.eventMode = "none";
 
-  const texture = Texture.from(canvas);
+  const texture = Texture.WHITE;
 
   const particles = [];
 
   const container = new Container();
+  // ソート無し（zIndexを使わない）
+  container.sortableChildren = false;
   app.stage.addChild(container);
 
   for (let i = 0; i < numParticles; i++) {
