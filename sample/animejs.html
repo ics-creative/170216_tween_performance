@@ -4,6 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="dom.css" />
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.1.3/lib/anime.umd.min.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -11,7 +19,7 @@
     <div class="rect"></div>
   </div>
   <script type="module">
-    import { animate } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+    import { animate } from 'animejs';
     animate(".rect", {
       x: 800,
       rotate: 360,

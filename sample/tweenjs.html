@@ -3,8 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/21.0.0/tween.umd.min.js"></script>
   <link rel="stylesheet" href="dom.css" />
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "tweenjs": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -12,13 +19,15 @@
     <div class="rect"></div>
   </div>
   <script type="module">
+    import {Tween, Easing} from "tweenjs";
+
     const element = document.querySelector(".rect"); // 要素を取得
     const param = { x: 0, rotation: 0 }; // 仮想の変化値Objectを作成
 
-    new TWEEN.Tween(param)
+    const tween = new Tween(param)
       .to({ x: 800, rotation: 360 }, 3000)
       .repeat(Infinity) // リピート指定
-      .easing(TWEEN.Easing.Cubic.InOut) // 加減速の種類
+      .easing(Easing.Cubic.InOut) // 加減速の種類
       .onUpdate(function () { // 更新時
         // 仮想の変化値Objectを要素に反映
         element.style.transform =
@@ -31,7 +40,7 @@
 
     function loop() {
       requestAnimationFrame(loop);
-      TWEEN.update();
+      tween.update();
     }
 
   </script>

@@ -8,14 +8,14 @@
     <script type="importmap">
       {
         "imports": {
-          "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.1.3/lib/anime.esm.min.js"
+          "motion": "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm"
         }
       }
     </script>
 
     <script type="module">
       import { createParticles, createRandomFromTo } from "./common.js";
-      import { animate } from "animejs";
+      import { animate } from "motion";
 
       window.addEventListener("DOMContentLoaded", () => {
         const particles = createParticles();
@@ -24,14 +24,20 @@
 
           const obj = createRandomFromTo();
 
-          animate(particle, {
-            left: [obj.from.x, obj.to.x],
-            top: [obj.from.y, obj.to.y],
-            duration: obj.duration * 1000,
-            loop: true,
-            easing: "easeInCubic",
-            direction: "alternate",
-          });
+          // Motionライブラリを使用してアニメーション
+          animate(
+            particle,
+            {
+              left: [obj.from.x, obj.to.x],
+              top: [obj.from.y, obj.to.y],
+            },
+            {
+              duration: obj.duration,
+              easing: "ease-in",
+              repeat: Infinity,
+              direction: "alternate",
+            },
+          );
         }
       });
     </script>

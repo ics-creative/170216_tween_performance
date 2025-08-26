@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="dom.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="../libs/CSSPlugin.js"></script>
     <script src="../libs/auto-stats.js"></script>
 
     <script type="module">
       import { createParticles, createRandomFromTo } from "./common.js";
+
+      createjs.Ticker.timingMode = createjs.Ticker.RAF;
+      createjs.Ticker.framerate = 60;
+      // プラグインのインストール
+      createjs.CSSPlugin.install();
 
       window.addEventListener("DOMContentLoaded", () => {
         const particles = createParticles();
@@ -16,17 +22,10 @@
 
           const obj = createRandomFromTo();
 
-          Velocity(
-            particle,
-            {
-              left: obj.to.x,
-              top: obj.to.y,
-            },
-            {
-              easing: "ease-in",
-              duration: obj.duration * 1000,
-              loop: true,
-            },
+          createjs.Tween.get(particle, { loop: true }).to(
+            { left: obj.to.x, top: obj.to.y },
+            obj.duration * 1000,
+            createjs.Ease.cubicIn,
           );
         }
       });
