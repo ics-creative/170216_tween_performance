@@ -1,4 +1,11 @@
-import { Application, Texture, Container, Sprite } from "pixi.js";
+import {
+  Application,
+  Texture,
+  Container,
+  Sprite,
+  VERSION,
+  RendererType,
+} from "pixi.js";
 
 const STAGE_WIDTH = 800;
 const STAGE_HEIGHT = 600;
@@ -16,7 +23,16 @@ export async function init() {
     height: STAGE_HEIGHT,
     antialias: false,
     resolution: 1,
+    preference: "webgpu",
   });
+  console.log(`PixiJS v${VERSION}`);
+  if (app.renderer.type === RendererType.WEBGPU) {
+    console.log("Renderer: WebGPU");
+  } else if (app.renderer.type === RendererType.WEBGL) {
+    console.log("Renderer: WebGL");
+  } else {
+    console.log("Renderer: Unknown", app.renderer.type);
+  }
 
   // Create a Pixi stage and renderer
   document.body.appendChild(app.canvas);

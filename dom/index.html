@@ -36,7 +36,7 @@
         setup() {
           const tweenList = ref(TWEEN_LIST);
           const selected = ref(TWEEN_LIST[0]);
-          const numParticles = ref(4000);
+          const numParticles = ref(6000);
 
           const iframeUrl = computed(
             () => selected.value.href + "?" + numParticles.value,
