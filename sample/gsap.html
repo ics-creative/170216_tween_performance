@@ -1,33 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-  <meta charset="UTF-8" />
-  <script type="importmap">
-    {
-      "imports": {
-        "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js"
+  <head>
+    <meta charset="UTF-8" />
+    <script type="importmap">
+      {
+        "imports": {
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js"
+        }
       }
-    }
-  </script>
-  <link rel="stylesheet" href="dom.css" />
-</head>
+    </script>
+    <link rel="stylesheet" href="dom.css" />
+  </head>
 
-<body>
-  <div class="container">
-    <div class="rect"></div>
-  </div>
-  <script>
-    import { gsap, Cubic } from "gsap";
+  <body>
+    <div class="container">
+      <div class="rect"></div>
+    </div>
+    <script>
+      import { gsap, Cubic } from "gsap";
 
-    gsap.to(".rect", {
-      duration: 3, // 秒指定
-      x: 700,
-      rotate: 360,
-      repeat: -1, // 繰り返し指定
-      ease: "power3.inOut" // 加減速の種類
-    });
-  </script>
-</body>
-
+      gsap.to(".rect", {
+        duration: 3, // 秒指定
+        x: 700,
+        rotate: 360,
+        repeat: -1, // 繰り返し指定
+        ease: "power3.inOut", // 加減速の種類
+      });
+    </script>
+  </body>
 </html>

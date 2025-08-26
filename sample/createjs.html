@@ -1,36 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="libs/CSSPlugin.js"></script>
+    <link rel="stylesheet" href="dom.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-  <script src="libs/CSSPlugin.js"></script>
-  <link rel="stylesheet" href="dom.css" />
-</head>
+  <body>
+    <div class="container">
+      <div class="rect"></div>
+    </div>
+    <script>
+      // プラグインのインストール
+      createjs.CSSPlugin.install();
 
-<body>
-  <div class="container">
-    <div class="rect"></div>
-  </div>
-  <script>
+      // フレームレートを設定
+      createjs.Ticker.framerate = 60;
 
-    // プラグインのインストール
-    createjs.CSSPlugin.install();
+      // 要素を取得
+      const element = document.querySelector(".rect");
 
-    // フレームレートを設定
-    createjs.Ticker.framerate = 60;
-
-    // 要素を取得
-    const element = document.querySelector(".rect");
-
-    element.style.left = "0px";
-    createjs.Tween.get(element, { loop: true })
-      .to({ left: 800 },
+      element.style.left = "0px";
+      createjs.Tween.get(element, { loop: true }).to(
+        { left: 800 },
         3000, // ミリ秒
-        createjs.Ease.cubicInOut // イージングの種類
+        createjs.Ease.cubicInOut, // イージングの種類
       );
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

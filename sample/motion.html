@@ -1,35 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dom.css" />
 
-<head>
-  <meta charset="UTF-8"/>
-  <link rel="stylesheet" href="dom.css"/>
-  
-  <script type="importmap">
-    {
-      "imports": {
-        "motion": "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm"
+    <script type="importmap">
+      {
+        "imports": {
+          "motion": "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm"
+        }
       }
-    }
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
-  <div class="container">
-    <div class="rect"></div>
-  </div>
-  <script type="module">
-    import { animate } from "motion"
+  <body>
+    <div class="container">
+      <div class="rect"></div>
+    </div>
+    <script type="module">
+      import { animate } from "motion";
 
-    animate('.rect', {
-      x: 800,
-      rotate: 360,
-    }, {
-      duration: 3.0, // 秒指定
-      repeat: Infinity, // 繰り返し
-      ease: "easeInOut" // イージング
-    });
-  </script>
-</body>
-
+      animate(
+        ".rect",
+        {
+          x: 800,
+          rotate: 360,
+        },
+        {
+          duration: 3.0, // 秒指定
+          repeat: Infinity, // 繰り返し
+          ease: "easeInOut", // イージング
+        },
+      );
+    </script>
+  </body>
 </html>

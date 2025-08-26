@@ -1,25 +1,25 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    background: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: #333;
 }
 
 .container {
-    position: relative;
-    width: 960px;
-    height: 540px;
+  position: relative;
+  width: 960px;
+  height: 540px;
 
-    background: #000;
+  background: #000;
 }
 
 .rect {
-    width: 100px;
-    height: 100px;
-    display: block;
-    position: absolute;
-    background: white;
-    top: 200px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  top: 200px;
 }

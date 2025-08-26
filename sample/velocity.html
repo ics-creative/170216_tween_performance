@@ -1,32 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
+    <link rel="stylesheet" href="dom.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js"></script>
-  <link rel="stylesheet" href="dom.css" />
-</head>
+  <body>
+    <div class="container">
+      <div class="rect"></div>
+    </div>
+    <script>
+      const element = document.querySelector(".rect"); // 要素を取得
 
-<body>
-  <div class="container">
-    <div class="rect"></div>
-  </div>
-  <script>
-    const element = document.querySelector(".rect"); // 要素を取得
-
-    Velocity(
-      element,
-      {
-        translateX: 800,
-        rotateZ: 360
-      },
-      {
-        easing: "ease", // 加減速の種類
-        duration: 3000, // ミリ秒指定
-        loop: true // 繰り返し
-      }
-    );
-  </script>
-</body>
-
+      Velocity(
+        element,
+        {
+          translateX: 800,
+          rotateZ: 360,
+        },
+        {
+          easing: "ease", // 加減速の種類
+          duration: 3000, // ミリ秒指定
+          loop: true, // 繰り返し
+        },
+      );
+    </script>
+  </body>
 </html>

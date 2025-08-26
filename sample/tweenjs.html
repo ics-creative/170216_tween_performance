@@ -1,49 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dom.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="dom.css" />
-  
-  <script type="importmap">
-    {
-      "imports": {
-        "tweenjs": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js"
+    <script type="importmap">
+      {
+        "imports": {
+          "tweenjs": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js"
+        }
       }
-    }
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
-  <div class="container">
-    <div class="rect"></div>
-  </div>
-  <script type="module">
-    import {Tween, Easing} from "tweenjs";
+  <body>
+    <div class="container">
+      <div class="rect"></div>
+    </div>
+    <script type="module">
+      import { Tween, Easing } from "tweenjs";
 
-    const element = document.querySelector(".rect"); // 要素を取得
-    const param = { x: 0, rotation: 0 }; // 仮想の変化値Objectを作成
+      const element = document.querySelector(".rect"); // 要素を取得
+      const param = { x: 0, rotation: 0 }; // 仮想の変化値Objectを作成
 
-    const tween = new Tween(param)
-      .to({ x: 800, rotation: 360 }, 3000)
-      .repeat(Infinity) // リピート指定
-      .easing(Easing.Cubic.InOut) // 加減速の種類
-      .onUpdate(function () { // 更新時
-        // 仮想の変化値Objectを要素に反映
-        element.style.transform =
-          `translateX(${param.x}px) rotate(${param.rotation}deg)`;
-      })
-      .start();
+      const tween = new Tween(param)
+        .to({ x: 800, rotation: 360 }, 3000)
+        .repeat(Infinity) // リピート指定
+        .easing(Easing.Cubic.InOut) // 加減速の種類
+        .onUpdate(function () {
+          // 更新時
+          // 仮想の変化値Objectを要素に反映
+          element.style.transform = `translateX(${param.x}px) rotate(${param.rotation}deg)`;
+        })
+        .start();
 
-    // 更新は任意のタイミングで行う
-    loop();
+      // 更新は任意のタイミングで行う
+      loop();
 
-    function loop() {
-      requestAnimationFrame(loop);
-      tween.update();
-    }
-
-  </script>
-</body>
-
+      function loop() {
+        requestAnimationFrame(loop);
+        tween.update();
+      }
+    </script>
+  </body>
 </html>
