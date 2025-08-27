@@ -7,7 +7,7 @@
     <script type="importmap">
       {
         "imports": {
-          "tweenjs": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js"
+          "@tweenjs/tween.js": "https://cdnjs.cloudflare.com/ajax/libs/tween.js/25.0.0/tween.esm.min.js"
         }
       }
     </script>
@@ -18,7 +18,7 @@
       <div class="rect"></div>
     </div>
     <script type="module">
-      import { Tween, Easing } from "tweenjs";
+      import { Tween, Easing } from "@tweenjs/tween.js";
 
       const element = document.querySelector(".rect"); // 要素を取得
       const param = { x: 0, rotation: 0 }; // 仮想の変化値Objectを作成
